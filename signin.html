@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #F6E0E0;
+
+            width: 500px;
+            padding: 40px;
+            gap: 20px;
+
+            border-radius: 5px;
+        }
+
+        .form input,
+        select {
+            padding: 5px;
+            width: 300px;
+            background-color: #F6A7A7;
+            border-radius: 5px;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+
+        .form input:focus {
+            outline: none;
+            box-shadow: 0 0 0 1.5px #f36060;
+        }
+
+        .form button {
+            text-align: center;
+            border-radius: 5px;
+            width: 80px;
+            padding: 2px 10px;
+            opacity: 0.8;
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 200ms;
+        }
+
+        .form button:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .login {
+            background-color: #F6A7A7;
+            border: 1px solid #f4a0a0;
+        }
+
+        .sign-in {
+            background-color: #F1883C;
+            border: 1px solid #f4a0a0;
+        }
+    </style>
+    <div class="flex flex-col items-center gap-10 p-5">
+        <img src="./assets/logo.jpeg" alt="logo" class="h-40 w-40">
+        <h1 class="text-2xl font-medium">Sign In</h1>
+        <div class="form">
+            <input id="username" type="text" placeholder="Name">
+            <input type="text" placeholder="IMR Registration Number">
+            <select>
+                <option value="">Hospital 1</option>
+                <option value="">Hospital 2</option>
+                <option value="">Hospital 3</option>
+                <option value="">Hospital 4</option>
+                <option value="">Hospital 5</option>
+            </select>
+            <input id="password" type="password" placeholder="Create Password">
+            <div class="mt-3 flex flex-col items-center gap-5">
+                <button id="signin" class="login" href="login.html">Sign In</button>
+                <span class="text-xs">
+                    Have an account?
+                    <a class="!p-0 text-blue-600" href="login.html">Login</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script>
+        let signIn = document.getElementById("signin");
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        let users = JSON.parse(localStorage.getItem("users"));
+        if (!users) {
+            users = [];
+        }
+        signIn.onclick = () => {
+            let user = {};
+            user.username = username.value;
+            user.password = password.value;
+            console.log(user);
+            localStorage.setItem("users", JSON.stringify([user, ...users]));
+            location.href = './login.html';
+        }
+    </script>
+</body>
+
+</html>
